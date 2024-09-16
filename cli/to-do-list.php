@@ -1,12 +1,22 @@
 <?php 
-    $name = readline("Ievadi savu vārdu:\n");
-    echo "Your name is $name";
-    $x = 0;
-     do {
-        echo "Number: $x"; 
-        if(readline("") == "N") {
-            break;
+    $taskList = ["izpildīt mājasdarbu", "aiziet gulēt laicīgi"];
+
+    $continue = "Y";
+
+    do {
+        $choice = readline("Izvēlies darbību: ");
+
+        switch($choice) {
+            case 1: 
+                foreach($taskList as $task) {
+                    echo "";
+                    for($i = 0; $i < count($taskList); $i++) {
+                        $id = $i + 1;
+                        echo "$id" . ". $taskList[$id]";
+                    }
+                    echo "";
+                }
+                break;
         }
-     }
-     while ($x <= 100);
+    } while($continue == 'y')
 ?>
