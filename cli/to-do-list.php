@@ -1,22 +1,41 @@
 <?php 
-    $taskList = ["izpildīt mājasdarbu", "aiziet gulēt laicīgi"];
+    static $taskList = ["izpildīt mājasdarbu", "aiziet gulēt laicīgi"];
 
     $continue = "Y";
 
+    function readTasks($taskList) {
+        $i = 0;
+        foreach($taskList as $task) {
+            echo "[$i] - $task \n";
+            $i++;
+        }
+    }
+    function addTask(&$taskList) {
+        $task = readline("Kāds būs jaunais uzdevums? >> ");
+        array_push($taskList, $task);
+    }
+
     do {
+        echo "[1] - apskatīt visus uzdevumus \n";
+        echo "[2] - pievienot jaunu uzdevumu \n";
+        echo "[0] - Iziet no programmas \n";
+
         $choice = readline("Izvēlies darbību: ");
 
         switch($choice) {
             case 1: 
-                foreach($taskList as $task) {
-                    echo "";
-                    for($i = 0; $i < count($taskList); $i++) {
-                        $id = $i + 1;
-                        echo "$id" . ". $taskList[$id]";
-                    }
-                    echo "";
-                }
+                readTasks($taskList);
+                break;
+            case 2:
+                addTask($taskList);
+                break;
+            case 0;
+                $continue = 'N';
+                break;
+            default:
                 break;
         }
-    } while($continue == 'y')
+
+        $continue = readline("Vai vēlies turpināt? [Y/N] >> ");
+    } while($continue == 'Y')
 ?>
